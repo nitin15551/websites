@@ -22,7 +22,10 @@ use App\Http\Controllers\Frontend\ServicesController;
 //});
 
 Route::get('/',[HomeController::class,'index']);
+
 Route::get('/contact',[ContactusController::class,'index']);
+Route::post('/contact/store',[ContactusController::class,'store']);
+
 Route::get('/services',[ServicesController::class,'index']);
 Route::get('/blogDetails',[ServicesController::class,'blogindex']);
 

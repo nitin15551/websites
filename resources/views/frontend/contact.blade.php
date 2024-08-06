@@ -38,11 +38,11 @@
 								<!-- Form -->
 {{--								<form class="form" method="post" action="mail/mail.php">--}}
                                 {!! Form::open([
-                                            'url'=>url('storecontactdata'),
+                                            'url'=>url('/contact/store'),
                                             'method'=>'post',
                                             'id'=>'contact',
                                             'role'=>'form',
-                                            'enctype'=>'multipart/form-data',
+//                                            'enctype'=>'multipart/form-data',
                                             'class'=>'form',
 
                                         ])
@@ -56,17 +56,21 @@
 										</div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                {!! Form::select('country',['1'=>'India','2'=>'China','3'=>'America','4'=>'Pakistan'],'2',['id'=>'country','required'=>'','class'=>'form-group']) !!}
+                                                <select name="countrie" id="countrie" class="form-control">
+                                                    @foreach($countries AS $countrie)
+                                                        <option value="{{ $countrie->id }}">{{ $countrie->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
 										<div class="col-lg-6">
 											<div class="form-group">
-												<input type="email" name="email" placeholder="Email" required="">
+                                                {!! Form::email('email','',['id'=>'email','required'=>'','class'=>'form-group','placeholder'=>"Email"]) !!}
 											</div>
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
-												<input type="text" name="phone" placeholder="Phone" required="">
+                                                {!! Form::number('phone','',['id'=>"phone",'reqired'=>"",'placeholder'=>"Phone"]) !!}
 											</div>
 										</div>
 										<div class="col-lg-6">

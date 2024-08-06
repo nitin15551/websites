@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+//Model
+use App\Models\Countries;
+use App\Models\Contact;
+
 class ContactusController extends Controller
 {
     /**
@@ -12,7 +16,9 @@ class ContactusController extends Controller
      */
     public function index()
     {
-        return view('frontend.contact');
+        $countries = Countries::all();
+        $datapass = compact('countries');
+        return view('frontend.contact')->with($datapass);
     }
 
     /**
@@ -28,7 +34,18 @@ class ContactusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $objectContact = new Contact();
+        $objectContact->name = $request['name'];
+        $objectContact->country_id = $request['countrie'];
+        $objectContact->email = $request['email'];
+        $objectContact->phone = $request['phone'];
+        $objectContact->subject = $request['subject'];
+        $objectContact->message = $request['message'];
+        $objectContact->newsletter = ($request['email'] == 'on') ? 'active' : 'inactive';
+        $objectContact->save();
+
+        return view('frontend.index');
+
     }
     /**
      * Display the specified resource.

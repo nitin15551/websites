@@ -56,7 +56,8 @@
 										</div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <select name="countrie" id="countrie" class="form-control">
+                                                <select name="countrie" id="countrie" class="form-control" required>
+                                                    <option value="">Select Country</option>
                                                     @foreach($countries AS $countrie)
                                                         <option value="{{ $countrie->id }}">{{ $countrie->name }}</option>
                                                     @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\support\Facades\Validator;
 
 //Model
 use App\Models\Countries;
@@ -34,6 +35,17 @@ class ContactusController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+           'name' => 'required|string|max:255',
+            'email'=>'required|string|email|max:255|unique:contacts',
+
+        ]);
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        echo"<pre>"; print_r($request->all()); echo "</pre>";
+        die;
         $objectContact = new Contact();
         $objectContact->name = $request['name'];
         $objectContact->country_id = $request['countrie'];

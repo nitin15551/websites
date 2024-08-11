@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             //$table->foreign('country_id')->references('id')->on('countries');
             $table->integer('country_id');
-            $table->string('email');
-            $table->string('phone');
+            $table->string('email')->unique();
+            $table->string('phone')->unique();
             $table->string('subject');
             $table->string('message');
             $table->enum('newsletter',['active','inactive'])->default('inactive');
